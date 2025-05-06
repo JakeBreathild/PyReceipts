@@ -2,6 +2,11 @@
   <dictionary name="project">
     <words>
       <w>configuracion</w>
+      <w>firstday</w>
+      <w>inputdate</w>
+      <w>inputname</w>
+      <w>inputprice</w>
+      <w>lastday</w>
     </words>
   </dictionary>
 </component>
