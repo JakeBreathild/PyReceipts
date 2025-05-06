@@ -159,7 +159,7 @@ class AfterSetup(Static):
 
 class CustomDataTable(Static):
     def compose(self) -> ComposeResult:
-        yield VerticalScroll(DataTable())
+        yield VerticalScroll(DataTable(), id="customtable")
 
     def on_mount(self) -> None:
         table = self.query_one(DataTable)
