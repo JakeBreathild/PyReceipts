@@ -7,7 +7,8 @@ import string
 Matrix = [("Nombre", "Fecha", "Precio", "Total")]
 ROWS = []
 day = 0
-month = 0
+month = ""
+monthserv = ""
 year = 0
 city = ""
 account = 0
@@ -31,6 +32,7 @@ class Setup(Static):
         yield Label("Configuracion Inicial")
         yield Input(placeholder="Dia de entrega", id="day", type="number")
         yield Input(placeholder="Mes", id="month", type="text")
+        yield Input(placeholder="Mes Cobro", id="monthserv", type="text")
         yield Input(placeholder="Año", id="year", type="number")
         yield Input(placeholder="Ciudad", id="city", type="text")
         yield Input(placeholder="Numero de Cuenta", id="account", type="number")
@@ -58,6 +60,9 @@ class Setup(Static):
         elif input_id == "month":
             month = event.value
             self.query_one("#month").remove()
+        elif input_id == "monthserv":
+            month = event.value
+            self.query_one("#monthserv").remove()
         elif input_id == "year":
             year = int(event.value)
             self.query_one("#year").remove()
@@ -153,7 +158,7 @@ class AfterSetup(Static):
             doc.addpagebreak()
             doc.addtext("{0}, {1} DE {2} DEL {3}\n\n".format(str(city).upper(), str(day), str(month).upper(), str(year)))
             doc.addtext("CUENTA DE COBRO N# {0}\n\n\n{1}\nNIT. {2}\n\n\n\n\nDEBE A\n{3}\n\n\nCC. {4}\n\n\n\n\n".format(str(account), str(company).upper(), str(nit), str(owe).upper(), str(cc)))
-            doc.addtext("LA SUMA DE {0} (${1}).\n\n\nPOR CONCEPTO DE SERVICIO DE COMEDOR {2} {3} A {4} {5} DEL {6}".format(str(quantity).upper(), str(total), str(month).upper(), str(firstday), str(month).upper(), str(lastday), str(year)))
+            doc.addtext("LA SUMA DE {0} (${1}).\n\n\nPOR CONCEPTO DE SERVICIO DE COMEDOR {2} {3} A {4} {5} DEL {6}".format(str(quantity).upper(), str(total), str(monthserv).upper(), str(firstday), str(monthserv).upper(), str(lastday), str(year)))
             doc.addtext("\n\n\n\nATENTAMENTE,\n\n\n\n\n\n\n{0}\nCC. {1}".format(str(owe).upper(), str(cc)))
             doc.save()
 
